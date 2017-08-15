@@ -1,0 +1,21 @@
+// practico.cpp : Defines the entry point for the console application.
+// LUCAS CAMPERO 8 DE AGOSTO 
+
+#include "stdafx.h"
+#include "stdlib.h"
+#include "conio.h"
+#include <iostream>
+using namespace std;
+
+void main(int s,int cont, int n)
+{		cout<<"ingrese el limite";
+		s=0;
+		cont=0;
+do{
+		cin>>n;
+}while(n<=0);
+do{s=s+2;
+		cont=cont+1;
+}while(cont<n);
+		cout<<"la suma total es de" <<s;
+getch();
