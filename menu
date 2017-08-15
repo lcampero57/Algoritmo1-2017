@@ -1,0 +1,86 @@
+// Menu.cpp : Defines the entry point for the console application.
+//LUCAS CAMPERO 15 DE AGOSTO 2017
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+float pot(float x, int y);
+int fac(int n);
+float serie(float x, int N);
+
+void main()
+{  float b,result;
+	int equis,a,N,x;
+	do
+	{
+	system ("cls");
+	cout<<"Menu"<<endl;
+	cout<<"1.-potencia"<<endl;
+	cout<<"2.-factorial"<<endl;
+	cout<<"3.-serie"<<endl;
+	cout<<"0.-salir"<<endl;
+	cout<<"Ingrese opcion"<<endl;
+	cin>>a;
+	
+	}while(a<0 || a>4);
+
+	switch(a)
+		{case 1: 
+			{	cout<<"ingrese base y exponente"<<endl;
+				cin>> b;
+				cin>> x;
+				result= pot(b,x);
+				cout<< b <<" elevado a " <<x <<" es " <<result;
+				break;
+			}
+		case 2: 
+			{	cout<<"ingrese factorial"<<endl;
+				cin>> x;
+				result= fac(x);
+				cout<< x <<" factorial es " <<result;
+				break;
+			}
+		case 3: 
+			{	cout<<"ingrese base y exponente"<<endl;
+				cin>> b;
+				cin>> x;
+				result= serie(b,x);
+				cout<<" el resultado de la serie es " <<result;
+				break;
+			}
+		case 4: 
+			cout<<"gracias por utilizar el programa";
+			break;
+		}
+	getch();
+}
+
+float pot(float x, int y)
+{	float result=1,cont=0;
+	do
+	{		
+		result=result*x;
+		cont=cont+1;
+		
+	}while(cont<y);
+	return (result);
+}
+int fac(int n)
+{	int result=1,cont=2;
+	do
+	{		
+		result=result*cont;
+		cont=cont+1;
+		
+	}while(cont<n);
+	return (result);
+}
+float serie(float x, int N)
+{	float result=0,cont=1;
+	do
+	{	result=result+(pot(x,N)/fac(N));
+		cont=cont+1;
+	}while(cont<N);
+	return (result);
+}
