@@ -1,0 +1,99 @@
+// Ejemplostring.cpp : Defines the entry point for the console application.
+// Lucas Campero Volpe
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#include "math.h"
+#include "stdlib.h"
+#define MAX 100
+#define MAX2 200
+using namespace std;
+void area(float a, float b, float c);
+void concatenar(float A[],float B[],int n,int m);
+void leervector(float V[],int N);
+bool palindromo(string cadena);
+
+
+
+void main()
+{int opc,o,n,m;
+float a,b,c,A[MAX],B[MAX],C[MAX];
+string cadena;
+do{
+	
+	do{
+		cout<<"           MENU             "<<endl;
+		cout<<"Ingrese la opcion de su menu"<<endl;
+		cout<<"1.- Area triangulo"<<endl;
+		cout<<"2.- Concatenar vectores"<<endl;
+		cout<<"3.- Palindromo"<<endl;
+		cout<<"0.- Salir"<<endl;
+		cin>>opc;
+		}while(opc<-1 || opc>3);
+	switch (opc)
+		{case 1: {area(a,b,c); 
+				break;
+				}
+		case 2:	{do{cout<<"ingrese el tamaño de su primer vector";
+					cin>>n;
+					cout<<"ingrese el tamaño de su segundo vector";
+					cin>>m;
+				}while(n<0 || m<0 || n>MAX || m>MAX);
+				leervector(A,n);
+				leervector(B,m);
+				concatenar(A,B,n,m);
+				break;
+				}
+		case 3:{getline(cin,cadena);
+				if (palindromo(cadena))
+					cout<<"es palindromo";
+				else
+					cout<<"no es palindromo";
+			break;
+			}
+		case 0: {cout<<"Gracias por usar el programa"; 
+				break;
+				}
+		default : cout<< "opcion invalida"<< endl;
+			break;
+		}
+	cout<<"desea volver a usar el programa?";
+	cout<<"1.- Si";
+	cout<<"2.- No";
+	cin>>o;
+}while(o!=2);
+
+getch();
+}
+
+void area(float a, float b, float c)
+{float s;
+	do{cout<<"ingrese los lados de su triangulos" <<endl;
+		cin>>a;
+		cin>>b;
+		cin>>c;
+	}while(a<0 || b<0 || c<0);
+	s=sqrt(pow(pow(a,2)+pow(b,2)+pow(c,2),2)-2*(pow(a,4)+pow(b,4)+pow(c,4)))*0.25;
+	cout<<"el area del triangulo es " <<s;
+}
+void leervector(float V[],int N)
+{for(int i=0;i<N;i++)
+	{cout<<"V [" <<i<< "]" <<endl;
+	cin>>V[i];
+	}
+}
+
+void concatenar(float A[],float B[],int n,int m)
+{ float C[MAX2];
+	for(int i=0;i<n;i++)
+		C[i]=A[i];
+	for(int i=n;i<n+m;i++)
+		C[n+i]=B[i];
+	cout<<"El vector concatenado es " <<endl;
+	for(int i=0;i<n+m;i++)
+	{cout<<"C [" <<i<< "]" <<endl;
+	cout<<C[i];
+	}
+}
