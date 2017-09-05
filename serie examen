@@ -1,0 +1,28 @@
+// serieexamen.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+using namespace std;
+
+void main()
+{int n,aux=2;
+float x,s=3,f=1,a=-1;
+	do{cout<<"ingrese un exponente impar: ";
+		cin>>n;
+		}while(n<0 || n%2==0);
+	cout<<"ingrese la base: ";
+	cin>>x;
+	for(int i=1;i<=n;i++)
+		{f=f*i;
+			 if(i%2 != 0)
+			 {s=s+((pow(x,i)/f)*pow(a,aux));
+			 aux++;
+			 }	
+		}
+	cout<<"el valor de la serie es " <<s;
+getch();
+
+}
