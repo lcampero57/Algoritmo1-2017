@@ -8,7 +8,7 @@
 using namespace std;
 
 void main()
-{int n,aux=2;
+{int n,aux=1;
 float x,s=3,f=1,a=-1;
 	do{cout<<"ingrese un exponente impar: ";
 		cin>>n;
