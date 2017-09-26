@@ -53,5 +53,6 @@ void main()
 		 cout<<"Telefono: "<<empleado[m].telef<<endl;
 		 cout<<"Celular: "<<empleado[m].cel<<endl;
 		 cout<<"Salario Bruto: "<<empleado[m].salariobruto<<endl;
+		 cout<<"Salario Neto: " <<empleado[m].salariobruto-(empleado[m].salariobruto*0.12)<<endl;
 getch();
 }
