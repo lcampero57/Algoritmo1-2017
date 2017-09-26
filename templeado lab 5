@@ -40,6 +40,7 @@ void main()
 		 cin>>empleado[i].cel;
 		 cout<<"ingrese su salario bruto ";
 		 cin>>empleado[i].salariobruto;
+		 cout<<"Salario Neto: " <<empleado[m].salariobruto-(empleado[m].salariobruto*0.12)<<endl;
 	}
 	do{
 	cout<<"ingrese el numero de empleado que desea mostrar";
