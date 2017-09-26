@@ -1,0 +1,56 @@
+// array de arrays.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#define MAX 10
+using namespace std;
+
+struct templeado{
+	int nroemp;
+	string nombre;
+	string apellido;
+	string direccion;
+	int telef;
+	int cel;
+	float salariobruto;
+	};
+
+void main()
+{ templeado empleado[MAX];
+  int n, m;
+	do{
+	cout<<"ingrese el numero de empleados ";
+	cin>>n;
+	}while(n<0 || n>MAX);
+	for(int i=0;i<n;i++)
+		{empleado[i].nroemp=i+1;
+		 cout<<"ingrese su nombre ";
+		 cin>>empleado[i].nombre;
+		 cout<<"ingrese su apellido ";
+		 cin>>empleado[i].apellido;
+		 cout<<"ingrese su direccion ";
+		 cin.ignore();
+		 getline(cin,empleado[i].direccion);
+		 cout<<"ingrese su telefono ";
+		 cin>>empleado[i].telef;
+		 cout<<"ingrese su numero celular ";
+		 cin>>empleado[i].cel;
+		 cout<<"ingrese su salario bruto ";
+		 cin>>empleado[i].salariobruto;
+	}
+	do{
+	cout<<"ingrese el numero de empleado que desea mostrar";
+	cin>>m;
+	}while(m<0 || m>n);
+		cout<<"Numero de empleado: "<<empleado[m].nroemp<<endl;
+		 cout<<"Nombre: "<<empleado[m].nombre<<endl;
+		 cout<<"Apellido: "<<empleado[m].apellido<<endl;
+		 cout<<"Direccion: "<<empleado[m].direccion<<endl;
+		 cout<<"Telefono: "<<empleado[m].telef<<endl;
+		 cout<<"Celular: "<<empleado[m].cel<<endl;
+		 cout<<"Salario Bruto: "<<empleado[m].salariobruto<<endl;
+getch();
+}
