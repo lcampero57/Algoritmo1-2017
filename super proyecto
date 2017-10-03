@@ -7,7 +7,7 @@
 #include <string>
 #define MAX 10
 using namespace std;
-struct lote{
+struct tlote{
 	string empresa;
 	string ubicacion;
 	float telefono;
@@ -15,6 +15,9 @@ struct lote{
 	float perimetro;
 	float precio;
 	};
+
+tlote lote[MAX];
+
 void insertar();
 void listar();
 void consulta();
@@ -23,10 +26,8 @@ void borrar();
 void clasificar();
 
 void main()
-{ lote lote[MAX];
-	int i=0;
+{ 
 	int opc;
-	int n;
 	do{
 		cout<<"Bienvenido a OfreceTuLoteAUnPrecioRazonable.com"<<endl;
 		cout<<"1.-Insertar Datos"<<endl;
@@ -63,8 +64,6 @@ getch();
 
 void insertar()
 {	int n;
-	lote lote[MAX];
-	
 		cout<<"ingrese la cantidad de lotes a ofrecer"<<endl;
 		cin>>n;
 		for(int i=0;i<n;i++)
@@ -83,4 +82,32 @@ void insertar()
 			cout<<"ingrese el precio del terreno"<<endl;
 			cin>>lote[i].precio;
 			}
+}
+
+void listar()
+{
+}
+void consulta()
+{int m;
+	do{
+	cout<<"ingrese el numero de empleado que desea mostrar";
+	cin>>m;
+	}while(m<0 || m>MAX);
+		 cout<<"Empresa: "<<lote[m].empresa<<endl;
+		 cout<<"Ubicacion: "<<lote[m].ubicacion<<endl;
+		 cout<<"Telefono: "<<lote[m].telefono<<endl;
+		 cout<<"Superficie: "<<lote[m].superficie<<" m2"<<endl;
+		 cout<<"Perimetro: "<<lote[m].perimetro<<" m"<<endl;
+		 cout<<"Precio: "<<lote[m].precio<<" bs"<<endl;
+}
+void modificar()
+{
+}
+
+void borrar()
+{
+}
+
+void clasificar()
+{
 }
