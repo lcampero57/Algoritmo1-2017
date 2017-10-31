@@ -1,0 +1,75 @@
+// 27ifs.cpp : Defines the entry point for the console application.
+//tercera pregunta del parcial
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#define MAX 10
+using namespace std;
+
+void main()
+{string palabra;
+cout<<"ingrese palabra"<<endl;
+getline(cin,palabra);
+int n=palabra.length();
+for(int i=0;i<n;i++)
+{if(palabra[i]=='a')
+palabra[i]='A';
+if(palabra[i]=='b')
+palabra[i]='B';
+if(palabra[i]=='c')
+palabra[i]='C';
+if(palabra[i]=='d')
+palabra[i]='D';
+if(palabra[i]=='e')
+palabra[i]='E';
+if(palabra[i]=='f')
+palabra[i]='F';
+if(palabra[i]=='g')
+palabra[i]='G';
+if(palabra[i]=='h')
+palabra[i]='H';
+if(palabra[i]=='i')
+palabra[i]='I';
+if(palabra[i]=='j')
+palabra[i]='J';
+if(palabra[i]=='k')
+palabra[i]='K';
+if(palabra[i]=='l')
+palabra[i]='L';
+if(palabra[i]=='m')
+palabra[i]='M';
+if(palabra[i]=='n')
+palabra[i]='N';
+if(palabra[i]=='o')
+palabra[i]='O';
+if(palabra[i]=='p')
+palabra[i]='P';
+if(palabra[i]=='q')
+palabra[i]='Q';
+if(palabra[i]=='r')
+palabra[i]='R';
+if(palabra[i]=='s')
+palabra[i]='S';
+if(palabra[i]=='t')
+palabra[i]='T';
+if(palabra[i]=='u')
+palabra[i]='U';
+if(palabra[i]=='v')
+palabra[i]='V';
+if(palabra[i]=='w')
+palabra[i]='W';
+if(palabra[i]=='x')
+palabra[i]='X';
+if(palabra[i]=='y')
+palabra[i]='Y';
+if(palabra[i]=='z')
+palabra[i]='Z';
+if(palabra[i]==' ')
+palabra[i]=' ';
+
+}
+cout<<palabra;
+getch();
+}
