@@ -1,0 +1,178 @@
+// proyecto.cpp : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#include "stdlib.h"
+
+using namespace std;
+
+void alta_directa_c(void);
+void alta_directa_p(void);
+/*
+void consulta_directa(void);
+void listado_directo(void);
+void borrado(void);
+*/
+void menucliente();
+void menuproveedor();
+
+struct t_cliente
+
+{
+	int clave_primaria;
+	string nombre;
+	int edad;
+	int UV;
+	char descripcion;
+	int estado; //borrado logico
+	int prec_max;
+	int prec_min;
+};
+
+
+
+struct t_proveedor
+
+{
+	int clave_primaria;
+	string nombre;
+	int UV;
+	string ubicacion;
+	char descripcion;
+	int estado; //borrado logico
+	int prec;
+};
+
+struct t_factura
+
+{
+
+
+
+};
+
+
+
+ t_cliente registro1;
+ FILE *alias1;
+
+ t_proveedor registro2;
+ FILE * alias2;
+
+void main()
+
+{int opc;
+	do{
+		cout<<"----------------MENU-------------------"<<endl;
+		cout<<"1.-Cliente "<<endl;
+		cout<<"2.-Proveedor "<<endl;
+		cout<<"0.-Salir "<<endl;
+		cout<<"Ingrese la opcion que desea: ";
+		cin>>opc;
+	
+		switch(opc)
+		{
+		case 1: {//clienteeee
+			menucliente();
+			break;
+				}
+		case 2:{
+			menuproveedor();
+			break;
+			   }
+		case 0: 
+			{cout<<"Gracias por usar el programa"<<endl;break;}
+		default:
+		{cout<<"error"<<endl;break;}
+		break;
+		}
+	}while(opc<0 || opc>2);
+getch();
+}
+void menucliente()
+{int a;
+	do{
+			cout<<"------------Menu Cliente------------"<<endl;
+			cout<<" Estas registrau adulau? "<<endl;
+			cout<<"1.- Si "<<endl;
+			cout<<"2.- No "<<endl;
+			cout<<"3.- No se adulau "<<endl;
+			cout<<"0.- Salir "<<endl;
+			cin.ignore();
+			cin>>a;
+			
+			switch(a)
+			{
+			{case 1:
+			cout<<"Ingrese su clave primaria"<<endl;
+			cin>>registro1.clave_primaria;
+			cout<<"------------Menu Cliente------------"<<endl;
+			cout<<"1.-Historial"<<endl;
+			cout<<"2.-Realizar nueva busqueda"<<endl;
+			break;
+			}
+			case 2:
+			{alta_directa_c;
+			cout<<"------------Menu Cliente------------"<<endl;
+			cout<<"1.-Historial"<<endl;
+			cout<<"2.-Realizar nueva busqueda"<<endl;
+			break;
+			}
+			case 3:
+			{cout<<"porque no te vas bien a la mierda por hacerte el chistosito, adulau"<<endl;break;
+			}
+			case 0:
+				{cout<<"Gracias por usar el programa "<<endl;break;}
+			default :
+				{cout<< "opcion invalida";break;}
+			break;
+			}
+	}while(a<0 || a>3);
+}
+
+void menuproveedor()
+{int b;
+	do{
+			cout<<"------------Menu Proveedor------------"<<endl;
+			cout<<" Estas registrau adulau? "<<endl;
+			cout<<"1.- Si "<<endl;
+			cout<<"2.- No "<<endl;
+			cout<<"3.- No se adulau "<<endl;
+			cout<<"0.- Salir "<<endl;
+			cin.ignore();
+			cin>>b;
+			
+			switch(b)
+			{
+			{case 1:
+			cout<<"Ingrese su clave primaria"<<endl;
+			cin>>registro2.clave_primaria;
+			cout<<"------------Menu Proveedor------------"<<endl;
+			cout<<"1.-Ingresar nuevo lote"<<endl;
+			cout<<"2.-Consulta de lote"<<endl;
+			cout<<"3.-Modificar su anuncio"<<endl;
+			cout<<"4.-Borrado de su anuncio"<<endl;
+			break;
+			}
+			case 2:
+			{alta_directa_p;
+			cout<<"------------Menu Proveedor------------"<<endl;
+			cout<<"1.-Ingresar nuevo lote"<<endl;
+			cout<<"2.-Consulta de lote"<<endl;
+			cout<<"3.-Modificar su anuncio"<<endl;
+			cout<<"4.-Borrado de su anuncio"<<endl;
+			break;
+			}
+			case 3:
+			{cout<<"porque no te vas bien a la mierda por hacerte el chistosito, adulau"<<endl;break;
+			}
+			case 0:
+				{cout<<"Gracias por usar el programa "<<endl;break;}
+			default :
+				{cout<< "opcion invalida";break;}
+			break;
+			}
+	}while(b<0 || b>3);
+}
