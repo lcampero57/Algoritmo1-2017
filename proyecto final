@@ -65,7 +65,7 @@ struct t_factura
 void main()
 
 {int opc;
-	do{
+	do{system("cls");
 		cout<<"----------------MENU-------------------"<<endl;
 		cout<<"1.-Cliente "<<endl;
 		cout<<"2.-Proveedor "<<endl;
@@ -94,7 +94,7 @@ getch();
 }
 void menucliente()
 {int a;
-	do{
+	do{system("cls");
 			cout<<"------------Menu Cliente------------"<<endl;
 			cout<<" Estas registrau adulau? "<<endl;
 			cout<<"1.- Si "<<endl;
@@ -115,7 +115,8 @@ void menucliente()
 			break;
 			}
 			case 2:
-			{alta_directa_c();
+			{system("cls");
+			alta_directa_c();
 			cout<<"------------Menu Cliente------------"<<endl;
 			cout<<"1.-Historial"<<endl;
 			cout<<"2.-Realizar nueva busqueda"<<endl;
@@ -135,7 +136,7 @@ void menucliente()
 
 void menuproveedor()
 {int b;
-	do{
+	do{system("cls");
 			cout<<"------------Menu Proveedor------------"<<endl;
 			cout<<" Estas registrau adulau? "<<endl;
 			cout<<"1.- Si "<<endl;
@@ -158,7 +159,8 @@ void menuproveedor()
 			break;
 			}
 			case 2:
-			{alta_directa_p();
+			{system("cls");
+			alta_directa_p();
 			cout<<"------------Menu Proveedor------------"<<endl;
 			cout<<"1.-Ingresar nuevo lote"<<endl;
 			cout<<"2.-Consulta de lote"<<endl;
@@ -227,19 +229,19 @@ void alta_directa_c()
 void alta_directa_p()
 {
  int nro_producto, dir_fisica;
-     cout<<"Ingreso de producto ";
+     cout<<"INGRESO DATOS "<<endl;
      alias2=fopen("PRODUCTO.DIR","rb+");
   if(alias2==NULL)
    fopen("PRODUCTO.DIR","wb+");
   else{
-    cout<<"Ingrese el numero del producto: ";
+    cout<<"Ingrese el numero del producto: "<<endl;
    cin>>nro_producto;
-  dir_fisica=nro_producto*sizeof(registro1);
+  dir_fisica=nro_producto*sizeof(registro2);
   fseek(alias2,dir_fisica,SEEK_SET);
-  fread(&registro2, sizeof(registro1),1,alias1);
+  fread(&registro2, sizeof(registro2),1,alias2);
   }
   if(registro2.clave_primaria==nro_producto)
-  {cout<<"registro duplicado";
+  {cout<<"registro duplicado"<<endl;
   fclose(alias2);
   return;}
  
@@ -249,17 +251,21 @@ void alta_directa_p()
   cout<<"Ingrese su nombre"<<endl;
   cin.ignore();
   getline(cin,registro2.nombre);
+  do{
   cout<<"Ingrese la UV en la que se encuentra su producto"<<endl;
-  cin>>registro2.UV;
-  cout<<"Ingrese el tipo de lote que tiene; construido(C) o valdio(V)"<<endl;
-  cin>>registro2.descripcion;
-  cout<<"Ingrese su precio "<<endl;
-  cin>>registro2.prec;
+  cin>>registro2.UV;}while(registro2.UV>100);
+  do{
+  cout<<"Ingrese el tipo de lote que tiene; construido(C) o baldio(B)"<<endl;
+  cin>>registro2.descripcion;}while(registro2.descripcion!='c' || registro2.descripcion!='b'); 
+  do{
+  cout<<"Ingrese su precio (max un millon) "<<endl;
+  cin>>registro2.prec;}while(registro2.prec<0 || registro2.prec>>1000000);
   cout<<"Ingrese su ubicacion"<<endl;
   cin.ignore();
   getline(cin,registro2.ubicacion);
+  do{
   cout<<"Ingrese el area del terreno"<<endl;
-  cin>>registro2.area;
+  cin>>registro2.area;}while(registro2.area<0);
   registro2.estado=0;
   registro2.clave_primaria==nro_producto;
      fseek(alias2,dir_fisica,SEEK_SET);
