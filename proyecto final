@@ -10,8 +10,8 @@ using namespace std;
 
 void alta_directa_c();
 void alta_directa_p();
+void consulta_directa_p();
 /*
-void consulta_directa(void);
 void listado_directo(void);
 void borrado(void);
 */
@@ -99,7 +99,6 @@ void menucliente()
 			cout<<" Estas registrau adulau? "<<endl;
 			cout<<"1.- Si "<<endl;
 			cout<<"2.- No "<<endl;
-			cout<<"3.- No se adulau "<<endl;
 			cout<<"0.- Salir "<<endl;
 			cin.ignore();
 			cin>>a;
@@ -122,26 +121,22 @@ void menucliente()
 			cout<<"2.-Realizar nueva busqueda"<<endl;
 			break;
 			}
-			case 3:
-			{cout<<"porque no te vas bien a la mierda por hacerte el chistosito, adulau"<<endl;break;
-			}
 			case 0:
 				{cout<<"Gracias por usar el programa "<<endl;break;}
 			default :
 				{cout<< "opcion invalida";break;}
 			break;
 			}
-	}while(a<0 || a>3);
+	}while(a<0 || a>2);
 }
 
 void menuproveedor()
-{int b;
+{int b,c;
 	do{system("cls");
 			cout<<"------------Menu Proveedor------------"<<endl;
 			cout<<" Estas registrau adulau? "<<endl;
 			cout<<"1.- Si "<<endl;
 			cout<<"2.- No "<<endl;
-			cout<<"3.- No se adulau "<<endl;
 			cout<<"0.- Salir "<<endl;
 			cin.ignore();
 			cin>>b;
@@ -166,10 +161,14 @@ void menuproveedor()
 			cout<<"2.-Consulta de lote"<<endl;
 			cout<<"3.-Modificar su anuncio"<<endl;
 			cout<<"4.-Borrado de su anuncio"<<endl;
-			break;
+			cin>>c;
+			switch(c)
+			{case 1: system ("cls"); alta_directa_p();break;
+			case 2: system ("cls");consulta_directa_p();break;
 			}
-			case 3:
-			{cout<<"porque no te vas bien a la mierda por hacerte el chistosito, adulau"<<endl;break;
+			getch();
+			
+			break;
 			}
 			case 0:
 				{cout<<"Gracias por usar el programa "<<endl;break;}
@@ -177,7 +176,7 @@ void menuproveedor()
 				{cout<< "opcion invalida";break;}
 			break;
 			}
-	}while(b<0 || b>3);
+	}while(b<0 || b>2);
 }
 void alta_directa_c()
 {
@@ -256,10 +255,10 @@ void alta_directa_p()
   cin>>registro2.UV;}while(registro2.UV>100);
   do{
   cout<<"Ingrese el tipo de lote que tiene; construido(C) o baldio(B)"<<endl;
-  cin>>registro2.descripcion;}while(registro2.descripcion!='c' || registro2.descripcion!='b'); 
+  cin>>registro2.descripcion;}while(registro2.descripcion!='c' && registro2.descripcion!='b'); 
   do{
   cout<<"Ingrese su precio (max un millon) "<<endl;
-  cin>>registro2.prec;}while(registro2.prec<0 || registro2.prec>>1000000);
+  cin>>registro2.prec;}while(registro2.prec>1000000);
   cout<<"Ingrese su ubicacion"<<endl;
   cin.ignore();
   getline(cin,registro2.ubicacion);
@@ -272,4 +271,32 @@ void alta_directa_p()
   fwrite(&registro2,sizeof(registro2),1,alias2);
   fclose(alias2);
   return;}
+}
+void consulta_directa_p()
+{  system("cls"); 
+  cout << "\n\rLISTADO DE REGISTROS DE PRODUCTOS"; 
+  alias2=fopen("PRODUCTO.SEC","rb"); // Intenta abrir el archivo PRODUCTO.SEC 
+                             // en modo de solo lectura 
+  if(alias2==NULL) 
+  { 
+    cout << "\n\n\n\rNo existe el archivo !!!"; 
+    cout << "\n\r<<< Oprima cualquier tecla para continuar >>>"; 
+    getch(); 
+    return; 
+  } 
+  cout << "\n\rNo Prod                    Descripcion  Cantidad        Precio  Garantia"; 
+  cout << "\n\r------------------------------------------------------------------------"; 
+  fread(&registro2,sizeof(registro2),1,alias2); 
+     // Lee el "Registro", de tamano=sizeof(Registro) del archivo "alias"
+  while(!feof(alias2)) // Ciclo mientras no se encuentre el final del archivo 
+  { 
+printf("\n\r%3d\t%30s\t%3d\t\t$%4.2f\t%c",registro2.UV,registro2.ubicacion,registro2.descripcion,registro2.area,registro2.prec); 
+    fread(&registro2,sizeof(registro2),1,alias2); 
+  } 
+  fclose(alias2); // Cierra el archivo 
+  cout << "\n\r------------------------------------------------------------------------"; 
+  cout << "\n\rFin del listado !!!"; 
+  cout << "\n\r<<< Oprima cualquier tecla para continuar >>>"; 
+  getch(); 
+  return; 
 }
