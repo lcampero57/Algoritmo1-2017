@@ -1,4 +1,5 @@
-// proyecto.cpp : Defines the entry point for the console application.
+
+ // proyecto.cpp : Defines the entry point for the console application.
 //
 #include "stdafx.h"
 #include <iostream>
@@ -131,7 +132,7 @@ void menucliente()
 }
 
 void menuproveedor()
-{int b,c;
+{int b,c1,c2;
 	do{system("cls");
 			cout<<"------------Menu Proveedor------------"<<endl;
 			cout<<" Estas registrau adulau? "<<endl;
@@ -151,6 +152,13 @@ void menuproveedor()
 			cout<<"2.-Consulta de lote"<<endl;
 			cout<<"3.-Modificar su anuncio"<<endl;
 			cout<<"4.-Borrado de su anuncio"<<endl;
+			cin>>c2;
+			switch(c2)
+			{case 1: system ("cls"); alta_directa_p();break;
+			case 2: system ("cls");consulta_directa_p();break;
+			}
+			getch();
+
 			break;
 			}
 			case 2:
@@ -161,8 +169,8 @@ void menuproveedor()
 			cout<<"2.-Consulta de lote"<<endl;
 			cout<<"3.-Modificar su anuncio"<<endl;
 			cout<<"4.-Borrado de su anuncio"<<endl;
-			cin>>c;
-			switch(c)
+			cin>>c1;
+			switch(c1)
 			{case 1: system ("cls"); alta_directa_p();break;
 			case 2: system ("cls");consulta_directa_p();break;
 			}
@@ -284,13 +292,13 @@ void consulta_directa_p()
     getch(); 
     return; 
   } 
-  cout << "\n\rNo Prod                    Descripcion  Cantidad        Precio  Garantia"; 
+  cout << "\n\rClave Primaria      UV   Ubicacion   Descripcion  Area  Precio"; 
   cout << "\n\r------------------------------------------------------------------------"; 
   fread(&registro2,sizeof(registro2),1,alias2); 
      // Lee el "Registro", de tamano=sizeof(Registro) del archivo "alias"
   while(!feof(alias2)) // Ciclo mientras no se encuentre el final del archivo 
   { 
-printf("\n\r%3d\t%30s\t%3d\t\t$%4.2f\t%c",registro2.UV,registro2.ubicacion,registro2.descripcion,registro2.area,registro2.prec); 
+	  cout<<registro2.clave_primaria<<registro2.UV<<registro2.ubicacion<<registro2.descripcion<<registro2.area<<registro2.prec; 
     fread(&registro2,sizeof(registro2),1,alias2); 
   } 
   fclose(alias2); // Cierra el archivo 
