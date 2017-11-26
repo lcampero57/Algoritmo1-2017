@@ -10,15 +10,15 @@ using namespace std;
 
 void alta_directa_c();
 void alta_directa_p();
-void listado_directa_p();
-void listado_directa_c();
+void listado_secuencial_p();
+void listado_secuencial_c();
 void crear_Archivo_Producto_p();
 void crear_Archivo_Producto_c();
 void modificacion_directa_c();
 void modificacion_directa_p();
-/*
-void borrado(void);
-*/
+void mostrar_resultados(int UV,char descripcion, int preciomax,int preciomin);
+void borrado_logico_directa_c();
+void borrado_logico_directa_p();
 void menucliente();
 void menuproveedor();
 
@@ -110,17 +110,21 @@ cin>>a;
 switch(a)
 {
 	{case 1:
-	cout<<"Ingrese su clave primaria"<<endl;
+	cout<<"Ingrese su registro"<<endl;
 	cin>>registro1.clave_primaria;
 	cout<<"------------Menu Cliente------------"<<endl;
 	cout<<"1.-Historial"<<endl;
 	cout<<"2.-Realizar nueva busqueda"<<endl;
 	cout<<"3.-Modificar busqueda"<<endl;
+	cout<<"4.-Mostrar resultados de busqueda"<<endl;
+	cout<<"5.-Borrar busqueda"<<endl;
 	cin>>d1;
 	switch(d1)
-	{case 1: system ("cls"); listado_directa_c();break;
+	{case 1: system ("cls"); listado_secuencial_c();break;
 	case 2: system ("cls"); alta_directa_c();break;
 	case 3: system ("cls");modificacion_directa_c();break;
+	case 4: system ("cls");mostrar_resultados(registro1.UV,registro1.descripcion,registro1.prec_max,registro1.prec_min);break;
+	case 5: system ("cls");borrado_logico_directa_c();break;
 	}
 	break;
 	}
@@ -132,11 +136,15 @@ case 2:
 	cout<<"1.-Historial"<<endl;
 	cout<<"2.-Realizar nueva busqueda"<<endl;
 	cout<<"3.-Modificar su busqueda"<<endl;
+	cout<<"4.-Mostrar resultados de busqueda"<<endl;
+	cout<<"5.-Borrado de busqueda"<<endl;
 	cin>>d2;
 	switch(d2)
-	{case 1: system ("cls"); listado_directa_c();break;
+	{case 1: system ("cls"); listado_secuencial_c();break;
 	case 2: system ("cls");alta_directa_c();break;
 	case 3: system ("cls");modificacion_directa_c();break;
+	case 4: system ("cls");mostrar_resultados(registro1.UV,registro1.descripcion,registro1.prec_max,registro1.prec_min);break;
+	case 5: system ("cls");borrado_logico_directa_c();break;
 	}
 	break;
 	}
@@ -146,7 +154,7 @@ default :
 	{cout<< "opcion invalida";break;}
 	break;
 }
-}while(a<0 || a>2);
+}while(a<0 || a>4);
 }
 
 void menuproveedor()
@@ -163,7 +171,7 @@ cin>>b;
 switch(b)
 {
 	{case 1:
-	cout<<"Ingrese su clave primaria"<<endl;
+	cout<<"Ingrese su registro"<<endl;
 	cin>>registro2.clave_primaria;
 	cout<<"------------Menu Proveedor------------"<<endl;
 	cout<<"1.-Ingresar nuevo lote"<<endl;
@@ -173,8 +181,9 @@ switch(b)
 	cin>>c2;
 	switch(c2)
 	{case 1: system ("cls"); alta_directa_p();break;
-	case 2: system ("cls");listado_directa_p();break;
+	case 2: system ("cls");listado_secuencial_p();break;
 	case 3: system ("cls");modificacion_directa_p();break;
+	case 4: system ("cls");borrado_logico_directa_p();break;
 	}
 	getch();
 
@@ -192,8 +201,9 @@ case 2:
 	cin>>c1;
 	switch(c1)
 	{case 1: system ("cls"); alta_directa_p();break;
-	case 2: system ("cls");listado_directa_p();break;
+	case 2: system ("cls");listado_secuencial_p();break;
 	case 3: system ("cls");modificacion_directa_p();break;
+	case 4: system ("cls");borrado_logico_directa_p();break;
 	}
 	getch();
 
@@ -205,7 +215,7 @@ default :
 	{cout<< "opcion invalida";break;}
 	break;
 }
-}while(b<0 || b>2);
+}while(b<0 || b>4);
 }
 
 void crear_Archivo_Producto_c()
@@ -323,7 +333,7 @@ void alta_directa_p()
 						fclose(alias2);
 						return;}
 }
-void listado_directa_p()
+void listado_secuencial_p()
 {  
 	system("cls"); 
 	cout << "\n\rLISTADO DE REGISTROS DE PRODUCTOS"<<endl; 
@@ -353,7 +363,7 @@ cout << "\n\r<<< Oprima cualquier tecla para continuar >>>";
 getch(); 
 return; 
 }
-void listado_directa_c()
+void listado_secuencial_c()
 {system("cls"); 
 	cout << "\n\rLISTADO DE REGISTROS DE BUSQUEDAS"<<endl; 
 	alias1=fopen("PRODUCTO.DIR","rb"); // Intenta abrir el archivo PRODUCTO.DIR en modo de solo lectura 
@@ -427,6 +437,7 @@ else
      fclose(alias1);
   return;}
 }
+
 void modificacion_directa_p()
 { int cp, dir_fisica;
 alias2=fopen("PRODUCTO.DIR","rb+");
@@ -472,4 +483,95 @@ else
  {cout<<"No existe el archivo";
      fclose(alias2);
   return;}
-    }
+}
+
+void mostrar_resultados(int UV,char descripcion, int preciomax,int preciomin)
+{
+alias2=fopen("PRODUCTO.DIR","rb+");
+fread(&registro2,sizeof(registro2),1,alias2); 
+while(!feof(alias2)) 
+{
+	
+	if(UV==registro2.UV)
+		{if(descripcion==registro2.descripcion)
+			{if(preciomax<registro2.prec<preciomin)
+			cout<<"Se encontro un anuncio de acuerdo a sus preferencias"<<endl;
+			cout<<"Su lote se encuentra en " <<registro2.ubicacion <<" y con un valor de " <<registro2.prec<<endl;
+			}
+		}
+} 
+
+
+fclose(alias2);
+}
+
+void borrado_logico_directa_c()
+{ int cp, dir_fisica;
+ alias1=fopen("PRODUCTO.DIR", "rb+");
+ 
+ if(alias1==NULL)
+  {cout<<"El archivo no existe";
+      return;
+     }
+ else
+  {cout<<"Ingrese su numero de registro: ";
+     cin>>cp;
+  dir_fisica=cp*sizeof(registro1);
+  fseek(alias1,sizeof(registro1),SEEK_SET);
+  fread(&registro1,sizeof(registro1),1,alias1);
+     }
+ if(registro1.clave_primaria==cp)
+  {registro1.clave_primaria=0;
+   registro1.nombre="----";
+   registro1.edad=0;
+   registro1.UV=0;
+   registro1.descripcion='----';
+   registro1.prec_max=0;
+   registro1.prec_min=0;
+   ftell(alias1);
+   fseek(alias1,sizeof(registro1),SEEK_SET);
+   fwrite(&registro1,sizeof(registro1),1,alias1);
+   fclose(alias1);
+   return;
+     }
+ else
+  {cout<<"No existe el archivo";
+      fclose(alias1);
+   return;
+  }
+}
+void borrado_logico_directa_p()
+{int cp, dir_fisica;
+ alias2=fopen("PRODUCTO.DIR", "rb+");
+ 
+ if(alias2==NULL)
+  {cout<<"El archivo no existe";
+      return;
+     }
+ else
+  {cout<<"Ingrese su numero de registro: ";
+     cin>>cp;
+  dir_fisica=cp*sizeof(registro2);
+  fseek(alias2,sizeof(registro2),SEEK_SET);
+  fread(&registro2,sizeof(registro2),1,alias2);
+     }
+ if(registro2.clave_primaria==cp)
+  {registro2.clave_primaria=0;
+   registro2.nombre="----";
+   registro2.UV=0;
+   registro2.ubicacion="----";
+   registro2.descripcion='----';
+   registro2.area=0.0;
+   registro2.prec=0;
+   ftell(alias2);
+   fseek(alias2,sizeof(registro2),SEEK_SET);
+   fwrite(&registro2,sizeof(registro2),1,alias2);
+   fclose(alias2);
+   return;
+     }
+ else
+  {cout<<"No existe el archivo";
+      fclose(alias2);
+   return;
+  }
+}
