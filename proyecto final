@@ -482,7 +482,12 @@ else
 void mostrar_resultados(int UV,char descripcion, int preciomax,int preciomin)
 {
 alias2=fopen("PRODUCTO.DIR","rb+");
-fread(&registro2,sizeof(registro2),1,alias2); 
+if(alias2==NULL)
+  {cout<<"El archivo no existe";
+      return;
+     }
+else
+{fread(&registro2,sizeof(registro2),1,alias2); 
 while(!feof(alias2)) 
 {
 	
@@ -497,6 +502,7 @@ while(!feof(alias2))
 
 
 fclose(alias2);
+}
 }
 
 void borrado_logico_directa_c()
