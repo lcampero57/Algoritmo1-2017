@@ -56,6 +56,11 @@ struct t_factura
 
 };
 
+struct t_resultados
+{
+
+};
+
 
 
 t_cliente registro1;
@@ -98,7 +103,7 @@ void menucliente()
 {int a,d1,d2;
 do{system("cls");
 cout<<"------------Menu Cliente------------"<<endl;
-cout<<" Estas registrau adulau? "<<endl;
+cout<<" Estas registrado? "<<endl;
 cout<<"1.- Si "<<endl;
 cout<<"2.- No "<<endl;
 cout<<"0.- Salir "<<endl;
@@ -110,12 +115,14 @@ switch(a)
 	{case 1:
 	cout<<"Ingrese su registro"<<endl;
 	cin>>registro1.clave_primaria;
+	do{system("cls");
 	cout<<"------------Menu Cliente------------"<<endl;
 	cout<<"1.-Historial"<<endl;
 	cout<<"2.-Realizar nueva busqueda"<<endl;
 	cout<<"3.-Modificar busqueda"<<endl;
 	cout<<"4.-Mostrar resultados de busqueda"<<endl;
 	cout<<"5.-Borrar busqueda"<<endl;
+	cout<<"0.-Salir"<<endl;
 	cin>>d1;
 	switch(d1)
 	{case 1: system ("cls"); listado_secuencial_c();break;
@@ -123,19 +130,23 @@ switch(a)
 	case 3: system ("cls");modificacion_directa_c();break;
 	case 4: system ("cls");mostrar_resultados(registro1.UV,registro1.descripcion,registro1.prec_max,registro1.prec_min);break;
 	case 5: system ("cls");borrado_logico_directa_c();break;
+	case 0: system ("cls");cout<<"gracias";break;
 	}
+	}while(d1!=0);
 	break;
 	}
 case 2:
 	{system("cls");
 	crear_Archivo_Producto_c();
 	alta_directa_c();
+	do{system("cls");
 	cout<<"------------Menu Cliente------------"<<endl;
 	cout<<"1.-Historial"<<endl;
 	cout<<"2.-Realizar nueva busqueda"<<endl;
 	cout<<"3.-Modificar su busqueda"<<endl;
 	cout<<"4.-Mostrar resultados de busqueda"<<endl;
 	cout<<"5.-Borrado de busqueda"<<endl;
+	cout<<"0.-Salir"<<endl;
 	cin>>d2;
 	switch(d2)
 	{case 1: system ("cls"); listado_secuencial_c();break;
@@ -143,7 +154,10 @@ case 2:
 	case 3: system ("cls");modificacion_directa_c();break;
 	case 4: system ("cls");mostrar_resultados(registro1.UV,registro1.descripcion,registro1.prec_max,registro1.prec_min);break;
 	case 5: system ("cls");borrado_logico_directa_c();break;
+	case 0: system ("cls");cout<<"gracias";break;
 	}
+	}while(d2!=0);
+
 	break;
 	}
 case 0:
@@ -159,7 +173,7 @@ void menuproveedor()
 {int b,c1,c2;
 do{system("cls");
 cout<<"------------Menu Proveedor------------"<<endl;
-cout<<" Estas registrau adulau? "<<endl;
+cout<<" Estas registrado? "<<endl;
 cout<<"1.- Si "<<endl;
 cout<<"2.- No "<<endl;
 cout<<"0.- Salir "<<endl;
@@ -171,40 +185,46 @@ switch(b)
 	{case 1:
 	cout<<"Ingrese su registro"<<endl;
 	cin>>registro2.clave_primaria;
+	do{system("cls");
 	cout<<"------------Menu Proveedor------------"<<endl;
 	cout<<"1.-Ingresar nuevo lote"<<endl;
-	cout<<"2.-Consulta de lote"<<endl;
+	cout<<"2.-Listado de anuncios"<<endl;
 	cout<<"3.-Modificar su anuncio"<<endl;
 	cout<<"4.-Borrado de su anuncio"<<endl;
+	cout<<"0.-Salir"<<endl;
 	cin>>c2;
 	switch(c2)
 	{case 1: system ("cls"); alta_directa_p();break;
 	case 2: system ("cls");listado_secuencial_p();break;
 	case 3: system ("cls");modificacion_directa_p();break;
 	case 4: system ("cls");borrado_logico_directa_p();break;
+	case 0: system ("cls");cout<<"gracias";break;
 	}
 	getch();
-
+	}while(c2!=0);
 	break;
 	}
 case 2:
 	{system("cls");
 	crear_Archivo_Producto_p();
 	alta_directa_p();
+	do{system("cls");
 	cout<<"------------Menu Proveedor------------"<<endl;
 	cout<<"1.-Ingresar nuevo lote"<<endl;
 	cout<<"2.-Consulta de lote"<<endl;
 	cout<<"3.-Modificar su anuncio"<<endl;
 	cout<<"4.-Borrado de su anuncio"<<endl;
+	cout<<"0.-Salir"<<endl;
 	cin>>c1;
 	switch(c1)
 	{case 1: system ("cls"); alta_directa_p();break;
 	case 2: system ("cls");listado_secuencial_p();break;
 	case 3: system ("cls");modificacion_directa_p();break;
 	case 4: system ("cls");borrado_logico_directa_p();break;
+	case 0: system ("cls");cout<<"gracias";break;
 	}
 	getch();
-
+	}while(c1!=0);
 	break;
 	}
 case 0:
