@@ -3,58 +3,27 @@
 //
 
 #include "stdafx.h"
-
 #include <iostream>
-
 #include "conio.h"
-
 #include <string>
-
 #include "stdlib.h"
-
-
-
 using namespace std;
-
-
-
 void alta_directa_c();
-
 void alta_directa_p();
-
 void listado_secuencial_p();
-
 void listado_secuencial_c();
-
 void crear_Archivo_Producto_p();
-
 void crear_Archivo_Producto_c();
-
 void modificacion_directa_c();
-
 void modificacion_directa_p();
-
-void mostrar_resultados(int UV,char descripcion, int preciomax,int preciomin);
-
 void borrado_logico_directa_c();
-
 void borrado_logico_directa_p();
-
 void menucliente();
-
 void menuproveedor();
 
-void listado_secuencial_r();
-
-void coincidencia();
-
 void crear_Archivo_Producto_r();
-
 void crear_Archivo_Producto_t();
-
 void factura_t();
-
-
 
 struct t_cliente
 
@@ -282,7 +251,7 @@ switch(a)
 
 	case 3: system ("cls");modificacion_directa_c();break;
 
-	case 4: system ("cls");coincidencia();listado_secuencial_r();break;
+	case 4: system ("cls");break;
 
 	case 5: system ("cls");borrado_logico_directa_c();break;
 
@@ -334,7 +303,7 @@ case 2:
 
 	case 3: system ("cls");modificacion_directa_c();break;
 
-	case 4: system ("cls");coincidencia();listado_secuencial_r();break;
+	case 4: system ("cls");break;
 
 	case 5: system ("cls");borrado_logico_directa_c();break;
 
@@ -508,7 +477,7 @@ void crear_Archivo_Producto_c()
 
 {
 
-	fopen("PRODUCTO.DIR","wb+");
+	fopen("registro1.DIR","wb+");
 
 	if(alias1==NULL){
 
@@ -528,7 +497,7 @@ void crear_Archivo_Producto_p()
 
 {
 
-	fopen("PRODUCTO.DIR","wb+");
+	fopen("registro2.DIR","wb+");
 
 	if(alias2==NULL){
 
@@ -548,7 +517,7 @@ void crear_Archivo_Producto_r()
 
 {
 
-	fopen("PRODUCTO.DIR","wb+");
+	fopen("resultados.DIR","wb+");
 
 	if(alias3==NULL){
 
@@ -564,7 +533,7 @@ void crear_Archivo_Producto_t()
 
 {
 
-	fopen("PRODUCTO.DIR","wb+");
+	fopen("factura.DIR","wb+");
 
 	if(alias4==NULL){
 
@@ -585,7 +554,7 @@ void alta_directa_c()
 
 	cout<<"INGRESO DE DATOS "<<endl;
 
-	alias1=fopen("PRODUCTO.DIR","rb+");
+	alias1=fopen("registro1.DIR","rb+");
 
 	if(alias1==NULL)
 
@@ -677,11 +646,11 @@ void alta_directa_p()
 
 	cout<<"INGRESO DATOS "<<endl;
 
-	alias2=fopen("PRODUCTO.DIR","rb+");
+	alias2=fopen("registro2.DIR","rb+");
 
 	if(alias2==NULL)
 
-		fopen("PRODUCTO.DIR","wb+");
+		cout<<"archivo no existe"<<endl;
 
 	else{
 
@@ -769,7 +738,7 @@ void listado_secuencial_p()
 
 	cout << "\n\rLISTADO DE REGISTROS DE PRODUCTOS"<<endl; 
 
-	alias2=fopen("PRODUCTO.DIR","rb"); // Intenta abrir el archivo PRODUCTO.DIR en modo de solo lectura 
+	alias2=fopen("registro2.DIR","rb"); // Intenta abrir el archivo PRODUCTO.DIR en modo de solo lectura 
 
 	if(alias2==NULL) { 
 
@@ -827,7 +796,7 @@ void listado_secuencial_c()
 
 	cout << "\n\rLISTADO DE REGISTROS DE BUSQUEDAS"<<endl; 
 
-	alias1=fopen("PRODUCTO.DIR","rb"); // Intenta abrir el archivo PRODUCTO.DIR en modo de solo lectura 
+	alias1=fopen("registro1.DIR","rb"); // Intenta abrir el archivo PRODUCTO.DIR en modo de solo lectura 
 
 	if(alias1==NULL) { 
 
@@ -883,7 +852,7 @@ void modificacion_directa_c()
 
 { int cp, dir_fisica;
 
-alias1=fopen("PRODUCTO.DIR","rb+");
+alias1=fopen("registro1.DIR","rb+");
 
 if(alias1==NULL)
 
@@ -973,7 +942,7 @@ void modificacion_directa_p()
 
 { int cp, dir_fisica;
 
-alias2=fopen("PRODUCTO.DIR","rb+");
+alias2=fopen("registro2.DIR","rb+");
 
 if(alias2==NULL)
 
@@ -1065,7 +1034,7 @@ void borrado_logico_directa_c()
 
 { int cp, dir_fisica;
 
- alias1=fopen("PRODUCTO.DIR", "rb+");
+ alias1=fopen("registro1.DIR", "rb+");
 
  
 
@@ -1135,7 +1104,7 @@ void borrado_logico_directa_p()
 
 {int cp, dir_fisica;
 
- alias2=fopen("PRODUCTO.DIR", "rb+");
+ alias2=fopen("registro2.DIR", "rb+");
 
  
 
@@ -1201,76 +1170,10 @@ void borrado_logico_directa_p()
 
 }
 
-void coincidencia()
-{   int registro;
-	alias2=fopen("PRODUCTO.DIR","rb");
-	alias1=fopen("PRODUCTO.DIR","rb");
-	if((alias2==NULL)&&(alias1==NULL))
-		{cout<<"Verifique sus datos"<<endl;
-		 fclose(alias1); 
-		 fclose(alias2); 
-		 getch();
-		 return;
-		}
-	else
-	{alias3=fopen("PRODUCTO.DIR","rb+");
-	cout<<"Ingrese su numero de registro: ";
-	cin>>registro;
-	    while(!feof(alias1))
-		{if(registro==registro1.clave_primaria)
-		 resultados.clave_primaria=registro1.clave_primaria;
-		}
-	 fread(&registro2,sizeof(registro2),1,alias2);
-	 fread(&registro1,sizeof(registro1),1,alias1);
-	 do{
-	 if((registro1.descripcion==registro2.descripcion)&&((registro1.prec_max>registro2.prec)&&(registro1.prec_min<registro2.prec))&&(registro1.UV==registro2.UV))
-		{resultados.descripcion=registro2.descripcion;
-		 resultados.prec=registro2.prec;
-		 resultados.UV=registro2.UV;
-		 resultados.area=registro2.area;
-		 resultados.ubicacion=registro2.ubicacion;
-	    }}while(!feof(alias2));
-	 fwrite(&resultados,sizeof(resultados),1,alias3);
-	 fclose(alias3);
-	 return;
-	 }
-
-}
-void listado_secuencial_r()
-
-{system("cls"); 
-	cout << "\n\rLISTADO DE REGISTROS DE BUSQUEDAS"<<endl; 
-	alias3=fopen("PRODUCTO.DIR","rb"); // Intenta abrir el archivo PRODUCTO.DIR en modo de solo lectura 
-	if(alias3==NULL) 
-	{ 
-		cout << "\n\n\n\rNo existe el archivo !!!"<<endl; 
-		cout << "\n\r<<< Oprima cualquier tecla para continuar >>>"<<endl; 
-		getch(); 
-		return; 
-	} 
-	cout << "UV    Descripcion    Precio     Area      Ubicacion       "<<endl; 
-	cout << "\n\r------------------------------------------------------------------------"; 
-fread(&resultados,sizeof(resultados),1,alias3); 
-// Lee el "Registro", de tamano=sizeof(Registro) del archivo "alias"
-while(!feof(alias3)) // Ciclo mientras no se encuentre el final del archivo 
-{
-	cout<<"\t"<<resultados.UV<<"\t"<<resultados.descripcion<<"\t"<<resultados.prec<<"\t"<<resultados.area<<"\t\t"<<resultados.ubicacion<<endl; 
-	fread(&resultados,sizeof(resultados),1,alias3);	
-} 
-
-fclose(alias3); // Cierra el archivo 
-cout<<"\n\r------------------------------------------------------------------------"; 
-cout<<"\n\rFin del listado !!!"; 
-cout<<"\n\r<<< Oprima cualquier tecla para continuar >>>"; 
-getch(); 
-return;
-
-}
-
 void factura_t()
 {   int registro;
-	alias2=fopen("PRODUCTO.DIR","rb");
-	alias4=fopen("PRODUCTO.DIR","rb");
+	alias2=fopen("registro2.DIR","rb");
+	alias4=fopen("factura.DIR","rb");
 	if(alias2==NULL)
 		{cout<<"Verifique sus datos"<<endl; 
 		 fclose(alias2); 
