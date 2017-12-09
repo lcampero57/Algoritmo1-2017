@@ -210,14 +210,33 @@ cin>>a;
 
 switch(a)
 
-{
+{int aux_c,reg_c;
 
 	{case 1:
 
 	cout<<"Ingrese su registro"<<endl;
 
-	cin>>registro1.clave_primaria;
+	cin>>reg_c;
+	alias1=fopen("registro1.dir","rb");
 	
+	
+	fread(&registro1,sizeof(registro1),1,alias1); 
+	while(!feof(alias1)) 
+	{if(reg_c==registro1.clave_primaria)
+		{	do{cout<<"Ingrese su contrasena"<<endl;
+			cin>>aux_c;
+			if(aux_c!=registro1.contra)
+				{cout<<"contrasena incorrecta, oprima una tecla y vuelva a intentarlo"<<endl;
+				getch();
+				system ("cls");}
+				
+			}while(aux_c!=registro1.contra);
+		}
+	fread(&registro1,sizeof(registro1),1,alias1);	
+	} 
+	
+	fclose(alias1);	
+
 	do{system("cls");
 
 	cout<<"------------Menu Cliente------------"<<endl;
@@ -358,13 +377,37 @@ cin>>b;
 
 switch(b)
 
-{
+{int aux_c,reg_c;
 
 	{case 1:
 
 	cout<<"Ingrese su registro"<<endl;
 
-	cin>>registro2.clave_primaria;
+	cin>>reg_c;
+	
+	cout<<"Ingrese su registro"<<endl;
+
+	cin>>reg_c;
+	alias2=fopen("registro2.dir","rb");
+	
+	
+	fread(&registro2,sizeof(registro2),1,alias2); 
+	while(!feof(alias2)) 
+	{if(reg_c==registro2.clave_primaria)
+		{	do{cout<<"Ingrese su contrasena"<<endl;
+			cin>>aux_c;
+			if(aux_c!=registro2.contra)
+				{cout<<"contrasena incorrecta, oprima una tecla y vuelva a intentarlo"<<endl;
+				getch();
+				system ("cls");}
+				
+			}while(aux_c!=registro2.contra);
+		}
+	fread(&registro2,sizeof(registro2),1,alias2);	
+	} 
+	
+	fclose(alias2);
+
 
 	do{system("cls");
 
@@ -763,9 +806,8 @@ void listado_secuencial_p()
 
 fread(&registro2,sizeof(registro2),1,alias2); 
 
-// Lee el "Registro", de tamano=sizeof(Registro) del archivo "alias"
 
-while(!feof(alias2)) // Ciclo mientras no se encuentre el final del archivo 
+while(!feof(alias2)) 
 
 {
 
@@ -779,7 +821,7 @@ fread(&registro2,sizeof(registro2),1,alias2);
 
 
 
-fclose(alias2); // Cierra el archivo 
+fclose(alias2); 
 
 cout << "\n\r------------------------------------------------------------------------"; 
 
