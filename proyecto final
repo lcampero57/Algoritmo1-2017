@@ -26,13 +26,8 @@ void crear_Archivo_Producto_t();
 void factura_t();
 
 struct t_cliente
-
-
-
-{
-
-	int clave_primaria;
-
+{	int clave_primaria;//registro
+	int contra;
 	string nombre;
 
 	int edad;
@@ -59,8 +54,8 @@ struct t_proveedor
 
 {
 
-	int clave_primaria;
-
+	int clave_primaria;//registro
+	int contra;
 	string nombre;
 
 	int UV;
@@ -222,7 +217,7 @@ switch(a)
 	cout<<"Ingrese su registro"<<endl;
 
 	cin>>registro1.clave_primaria;
-
+	
 	do{system("cls");
 
 	cout<<"------------Menu Cliente------------"<<endl;
@@ -574,7 +569,7 @@ void alta_directa_c()
 
 	}
 
-	if(registro1.clave_primaria==nro_producto)
+	if(nro_producto==registro1.clave_primaria)
 
 	{cout<<"registro duplicado";
 
@@ -589,6 +584,10 @@ void alta_directa_c()
 		cout<<"Ingrese registro"<<endl;
 
 		cin>>registro1.clave_primaria;
+
+		cout<<"Ingrese su contrasena"<<endl;
+
+		cin>>registro1.contra;
 
 		cout<<"Ingrese su nombre"<<endl;
 
@@ -682,6 +681,10 @@ void alta_directa_p()
 
 		cin>>registro2.clave_primaria;
 
+		cout<<"Ingrese su contrasena"<<endl;
+
+		cin>>registro2.contra;
+
 		cout<<"Ingrese su nombre"<<endl;
 
 		cin.ignore();
@@ -714,7 +717,7 @@ void alta_directa_p()
 
 					do{
 
-						cout<<"Ingrese el area del terreno"<<endl;
+						cout<<"Ingrese el area del terreno en metros cuadrados"<<endl;
 
 						cin>>registro2.area;}while(registro2.area<0);
 
@@ -876,21 +879,7 @@ fread(&registro1, sizeof(registro1),1,alias1);
 
 if(registro1.clave_primaria==cp)
 
-{  cout<<"Ingrese registro"<<endl;
-
-  cin>>registro1.clave_primaria;
-
-  cout<<"Ingrese su nombre"<<endl;
-
-  cin.ignore();
-
-  getline(cin,registro1.nombre);
-
-  do{cout<<"Ingrese su edad (+18)"<<endl;
-
-  cin>>registro1.edad;}
-
-  while(registro1.edad<18);
+{  
 
   do{
 
@@ -966,15 +955,7 @@ fread(&registro2, sizeof(registro2),1,alias2);
 
 if(registro2.clave_primaria==cp)
 
-{  cout<<"Ingrese registro"<<endl;
-
-  cin>>registro2.clave_primaria;
-
-  cout<<"Ingrese su nombre"<<endl;
-
-  cin.ignore();
-
-  getline(cin,registro2.nombre);
+{  
 
   do{
 
